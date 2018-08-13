@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Sign up : Online Examination Portal</title>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="css/stylesheet.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body>
+<!--  -->
+<script src="Javascript/sign-up.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+<!--  -->
+<div ng-app="myApp" ng-controller="myCtrl" layout-align="center">
+<md-toolbar class="md-primary">
+    <div class="md-toolbar-tools">
+      <md-button
+        class="md-icon-button"
+        aria-label="Settings"
+        ng-click="ctrl.showToolbarMenu($event, ctrl.settings)">
+        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+      </md-button>
+      <h2>Online Examination System</h2>
+      <span flex></span>
+      <md-button
+        class="md-icon-button"
+        aria-label="Favorite"
+        ng-click="ctrl.showToolbarMenu($event, ctrl.favorite)">
+        <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+      </md-button>
+      <md-button
+        class="md-icon-button"
+        aria-label="More"
+        ng-click="ctrl.showToolbarMenu($event, ctrl.more)">
+        <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  
+ <form class="form-horizontal"  th:object="${user}" th:action="@{/saveuser}" method="post"> 
+ <md-card>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Sign up</span>
+        <span class="md-subhead">Tell us a little about you.</span>
+      </md-card-title-text>
+    </md-card-title>
+
+    <md-card-content>
+      <div layout="row">
+        <md-input-container>
+            <label>First name</label>
+            <input type="text" th:field="*{firstName}" ng-model="user.firstName">
+          </md-input-container>
+
+		<md-input-container>
+          <label>Last Name</label>
+          <input type="text" th:field="*{lastName}"/>
+        </md-input-container>
+       </div>
+       
+       <div layout="row">
+       <md-input-container>
+          <label>Username</label>
+          <input type="text" th:field="*{userName}"/>
+        </md-input-container>
+        
+         <md-input-container class="md-block">
+    <input ng-model="user.email" type="email"  th:field="*{email}" placeholder="Email (required)" ng-required="true" id="txt_email" name="txt_email">
+    </md-input-container>
+       </div>
+       
+       <div layout="row">
+        <md-input-container>
+           <input type="password" ng-model="user.password"  th:field="*{password}" placeholder="Password" ng-required="true" name="txt_password">
+          </md-input-container>
+
+		<md-input-container>
+          <input ng-model="user.confirmPassword" type="password" placeholder="Confirm Password" ng-required="true">
+        </md-input-container>
+       </div>
+       <div layout="row">
+       <md-button class="md-raised md-primary" type="submit">Sign Up</md-button>
+       </div>
+    </md-card-content>
+  </md-card>
+ </form>
+</div>
+</body>
+</html>
