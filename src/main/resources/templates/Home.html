@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Angular test application</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body >
+<script src="Javascript/home.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+
+<div ng-app="jsbin" ng-controller="DemoCtrl as vm">
+	<md-card>
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Question.{{index+1 + ": " + complaints.question}}</span>
+       </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+     	 <md-radio-group ng-model="data.group1">
+					<md-radio-button name="answer" value="a">{{complaints.option_a}}</md-radio-button>
+     				<md-radio-button name="answer" value="b">{{complaints.option_b}} </md-radio-button>
+      				<md-radio-button name="answer" value="c">{{complaints.option_c}}</md-radio-button>
+					<md-radio-button name="answer" value="d">{{complaints.option_d}}</md-radio-button>
+    		 </md-radio-group> 
+    	<md-button class="md-raised md-primary" ng-disabled="index == 0" ng-click="getPrevious()">Previous</md-button>
+        <md-button class="md-raised md-primary" ng-disabled="index == vm.data.length - 1" ng-click="getNext()">Next</md-button>
+        	</div>
+    <md-card>
+	
+</div>
+</body>
+
+</html>

@@ -15,18 +15,22 @@ import com.oes.repositories.UsersRepository;
 
 @Service
 public class UsersServiceImpl implements UsersService{
+	
 	@Autowired
 	private UsersRepository usersRepository;
 	
 	@Autowired
     private RoleRepository roleRepository;
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    
 	@Autowired
-	public void setProductRepository(UsersRepository usersRepository) {
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	public void setUsersRepository(UsersRepository usersRepository) {
 	      this.usersRepository= usersRepository;
 	}
 	 
+	
 	@Override
 	public Users save(Users user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
