@@ -14,25 +14,29 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
 
-<div ng-app="jsbin" ng-controller="DemoCtrl as vm">
+<div ng-app="jsbin" ng-controller="DemoCtrl as vm" ng-init="getData();start()">
+	<div>
+  		<div>Counter: {{counter}}</div>
+  		<div>Countdown in seconds: {{countdown}}</div>  
+  		<div>Countdown date time: {{countdown | secondsToDateTime | date:'HH:mm:ss'}}</div>  
+	</div>
 	<md-card>
-    <md-card-title>
-      <md-card-title-text>
-        <span class="md-headline">Question.{{index+1 + ": " + complaints.question}}</span>
-       </md-card-title-text>
-    </md-card-title>
-    <md-card-content>
-     	 <md-radio-group ng-model="data.group1">
-					<md-radio-button name="answer" value="a">{{complaints.option_a}}</md-radio-button>
-     				<md-radio-button name="answer" value="b">{{complaints.option_b}} </md-radio-button>
-      				<md-radio-button name="answer" value="c">{{complaints.option_c}}</md-radio-button>
-					<md-radio-button name="answer" value="d">{{complaints.option_d}}</md-radio-button>
-    		 </md-radio-group> 
-    	<md-button class="md-raised md-primary" ng-disabled="index == 0" ng-click="getPrevious()">Previous</md-button>
-        <md-button class="md-raised md-primary" ng-disabled="index == vm.data.length - 1" ng-click="getNext()">Next</md-button>
-        	</div>
-    <md-card>
-	
+    	<md-card-title>
+      		<md-card-title-text>
+        		<span class="md-headline">Question.{{index+1 + ": " + complaints.question}}</span>
+       		</md-card-title-text>
+    	</md-card-title>
+    	<form action="/sendAnswer" method="post">
+    	<md-card-content>
+     	 		  <input type="radio" ng-model="Answers[complaints.question_id]" value="a">{{complaints.option_a}} <br/>
+  			  	  <input type="radio" ng-model="Answers[complaints.question_id]" value="b">{{complaints.option_b}} <br/>
+                  <input type="radio" ng-model="Answers[complaints.question_id]" value="c">{{complaints.option_c}} <br/> 
+                  <input type="radio" ng-model="Answers[complaints.question_id]" value="d">{{complaints.option_d}} <br/> 
+        <md-button class="md-raised md-primary" ng-disabled="index == 0" ng-click="getPrevious()">Previous</md-button>
+        <md-button class="md-raised md-primary" ng-hide="index == questions.length-1" ng-click="getNext()">Next</md-button>
+        <md-button class="md-raised md-warn" ng-show="index == questions.length-1" ng-click="getUserResponse()">Submit Test</md-button>
+		</form>
+	<md-card>
 </div>
 </body>
 
