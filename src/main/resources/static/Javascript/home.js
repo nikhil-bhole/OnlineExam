@@ -6,14 +6,18 @@ app.filter('secondsToDateTime', function() {
     };
 })
 
-app.controller("DemoCtrl", function($scope,$http,$interval) {
+app.controller("DemoCtrl", function($scope,$http,$interval,$location) {
 	var intervalId;
 	$scope.Answers = {};
 	$scope.counter = 0;
-	$scope.initialCountdown = 10;
+	$scope.initialCountdown = 100;
 	$scope.countdown = $scope.initialCountdown;
+	// be used to decide for showing PostResults   
+	$scope.postDivAvailable = false;
+	// be used for decide for showing GetResults 
+	$scope.getDivAvailable = false;
 	
-	$scope.getData = function(){
+		$scope.getData = function(){
 		$http({
 			url: 'getQuestions',
 			method: 'GET'
@@ -39,8 +43,30 @@ app.controller("DemoCtrl", function($scope,$http,$interval) {
 	};
 	
 	$scope.getUserResponse = function(){
-		console.log($scope.Answers)
+		var url = "response";
+		
+		// prepare headers for posting
+		var config = {
+                headers : {
+                	'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+        }
+		var data = JSON.stringify($scope.Answers);
+		
+		console.log(data);
+		// do posting
+				$http.post(url, data, config).then(function (response) {
+					$scope.postDivAvailable = true;
+					$scope.postCust =  response.data;
+				}, function error(response) {
+					$scope.postResultMessage = "Error Status: " +  response.statusText;
+				});
+		
+		 
+		
 	};
+  
 		
 	$scope.timer = function(){
 	    var startTime = new Date();
@@ -53,7 +79,9 @@ app.controller("DemoCtrl", function($scope,$http,$interval) {
 	 
 	 $scope.$watch('countdown', function(countdown){
 		    if (countdown === 0){
-		        $scope.stop();
+		        	$scope.stop();
+		        	window.location = "finished";
+		        	$scope.getUserResponse();
 		    }
 	 });
 
