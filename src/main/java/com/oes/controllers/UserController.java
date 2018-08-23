@@ -1,6 +1,5 @@
 package com.oes.controllers;
 
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -30,14 +29,6 @@ public class UserController {
 	@Autowired
 	public void setQuestionService(QuestionService questionService) {
 	        this.questionsService = questionService;
-	}
-	
-	
-	@RequestMapping(value={"/login"}, method = RequestMethod.GET)
-	public ModelAndView login(){
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("login");
-		return modelAndView;
 	}
 	
 	/**

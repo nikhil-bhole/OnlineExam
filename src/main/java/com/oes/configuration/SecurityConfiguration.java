@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -32,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Value("${spring.queries.roles-query}")
 	private String rolesQuery;
 
-	/*@Override
+	@Override
 	protected void configure(AuthenticationManagerBuilder auth)
 			throws Exception {
 		auth.
@@ -41,7 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.authoritiesByUsernameQuery(rolesQuery)
 				.dataSource(dataSource)
 				.passwordEncoder(bCryptPasswordEncoder);
-	}*/
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -49,10 +48,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.
 		authorizeRequests()
 		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+		.antMatchers("/user/**").access("hasRole('USER')")
 		.and()
 		  .formLogin().loginPage("/login").failureUrl("/login?error")
 		  .usernameParameter("username").passwordParameter("password")
-		  .defaultSuccessUrl("/users")
+		  .defaultSuccessUrl("/default")
 		.and()
 		  .logout().logoutSuccessUrl("/users")
 		.and()
