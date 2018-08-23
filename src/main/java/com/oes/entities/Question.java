@@ -18,6 +18,9 @@ public class Question {
 	@Column(name="question")
 	private String question;
 	
+	@Column(name="course_id")
+	private int course_id;
+	
 	@Column(name="option_a")
 	private String option_a;
 	
@@ -87,6 +90,14 @@ public class Question {
 
 	public void setCorrect_option(String correct_option) {
 		this.correct_option = correct_option;
+	}
+
+	public int getCourse_id() {
+		return course_id;
+	}
+
+	public void setCourse_id(int course_id) {
+		this.course_id = course_id;
 	}
 	
 	

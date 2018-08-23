@@ -23,15 +23,42 @@ public class UserResponse {
 	@Column(name="user_response")
 	private String user_response;
 	
+	@Column(name="course_id")
+	private int course_id;
+	
+	@Column(name="test_date")
+	private String dateTime;
+	
 	public String getUser_response() {
 		return user_response;
 	}
 
+	
 	public void setUser_response(String user_response) {
 		this.user_response = user_response;
 	}
 	
 	public String toString() { 
 	    return "User Response: '" + this.user_response ;
+	}
+
+
+	public int getCourse_id() {
+		return course_id;
+	}
+
+
+	public void setCourse_id(int course_id) {
+		this.course_id = course_id;
+	}
+
+
+	public String getDateTime() {
+		return dateTime;
+	}
+
+
+	public void setDateTime(String dateTime) {
+		this.dateTime = dateTime;
 	}
 }

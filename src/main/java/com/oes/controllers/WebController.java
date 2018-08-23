@@ -21,8 +21,9 @@ public class WebController {
     public String defaultAfterLogin(HttpServletRequest request) {
         if (request.isUserInRole("ROLE_ADMIN")) {
             return "redirect:/admin/";
+        }else {
+        	return "redirect:/user";
         }
-        return "redirect:/user/";
     }
 	
 	@RequestMapping("/admin")
