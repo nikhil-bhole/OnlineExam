@@ -30,4 +30,8 @@ public class UserResponse {
 	public void setUser_response(String user_response) {
 		this.user_response = user_response;
 	}
+	
+	public String toString() { 
+	    return "User Response: '" + this.user_response ;
+	}
 }

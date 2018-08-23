@@ -80,8 +80,8 @@ app.controller("DemoCtrl", function($scope,$http,$interval,$location) {
 	 $scope.$watch('countdown', function(countdown){
 		    if (countdown === 0){
 		        	$scope.stop();
-		        	window.location = "finished";
-		        	$scope.getUserResponse();
+		        	/*window.location = "finished";
+		        	$scope.getUserResponse();*/
 		    }
 	 });
 
