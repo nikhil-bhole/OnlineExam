@@ -1,0 +1,56 @@
+<html>
+<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<title>Sign In : Online examination portal</title>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="css/login.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+<script src="Javascript/console.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+
+<div ng-app="myApp" ng-controller="AppCtrl" layout="column" ng-cloak>
+	<!--  Welcome: <p th:text="${username}"></p> -->
+		
+		<md-toolbar class="md-hue-2">
+			<div class="md-toolbar-tools">
+				<md-button ng-click="toggleSidenav()" class="md-icon-button" aria-label="Settings" ng-disabled="false"> 
+					<i class="material-icons">menu</i> </md-button>
+						<h2 flex md-truncate>Dashboard</h2>
+							<md-button ng-click="ctrl.showToolbarMenu($event, ctrl.more)" class="md-icon-button" aria-label="More"> 
+								<i class="material-icons">more_vert</i>
+							</md-button>
+			</div>
+		</md-toolbar>
+
+		<section layout="row" flex>
+			<md-sidenav class="md-sidenav-left" md-component-id="closeEventsDisabled" md-whiteframe="4" md-disable-close-events> 
+				<md-toolbar class="md-hue-2">
+					<h1 class="md-toolbar-tools">Menu</h1>
+				</md-toolbar>
+			</md-sidenav>
+		</section>
+	
+		
+		
+		<div layout="column" layout-align="start-stretch">
+			<div>Welcome <h1 th:text="${username}"></h></div>
+			<div>userID <h1 th:text="${userId}"></h></div>
+			<div>
+			<form class="form-horizontal" th:action="@{/logout}" method="POST"> 
+			<md-button class="md-raised md-warn" type="submit">logout</md-button>
+			 </form>
+			</div>
+		</div>
+		
+		
+</div>
+
+
+</body>
+</html>

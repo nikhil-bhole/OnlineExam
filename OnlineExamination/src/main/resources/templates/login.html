@@ -1,0 +1,56 @@
+<html>
+<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<title>Sign In : Online examination portal</title>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="css/login.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body>
+<script src="Javascript/login.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+
+<div ng-app="myApp" ng-controller="AppCtrl" layout="column" ng-cloak>
+  
+<div layout="row" flex="70" layout-align="center center">
+  
+<form class="form-horizontal" th:action="@{/login}" method="POST"> 
+ 		<md-card>
+    		<md-card-title>
+      			<md-card-title-text>
+       				 <span class="md-headline">Sign In</span>
+        				<span class="md-subhead">Please Sign In to continue</span>
+     			 </md-card-title-text>
+    		</md-card-title>
+
+     	<md-card-content>
+     		 <div layout="row">
+        		<md-input-container>
+            		<label>Username</label>
+            			<input type="text"  name="username" ng-model="user.username">
+          		</md-input-container>
+        	 </div>
+        	 
+        	 <div layout="row">
+        		<md-input-container>
+            		<label>Password</label>
+            			<input type="password"  name="password" ng-model="user.password">
+          		</md-input-container>
+        	 </div>
+        	 
+        	 <div layout="row">
+       			<md-button class="md-raised md-primary" type="submit">Sign In</md-button>
+       			<md-button class="md-primary" ng-href="sign-up" target="_blank">Register</md-button>
+       		</div>
+        	
+       	</md-card-content>
+  		</md-card>
+ </form>
+  </div>
+ </div>
+</body>
+</html>
