@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import com.oes.entities.Question;
@@ -58,7 +59,12 @@ public class UserController {
 	   return questionsService.listAllQuestion();
 	}
     
-    /**
+    @RequestMapping(value = "/getQuestionsByCourseId", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+    public List<Question> getQuestionsById(Model model) {
+	   return questionsService.findAllByCourseId(2);
+	}
+    
+   /**
      * Save user to database.
      *
      * @param user
@@ -69,5 +75,7 @@ public class UserController {
         usersService.save(user);
         return "login";
     }
+    
+    
    
  }

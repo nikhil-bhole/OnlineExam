@@ -2,6 +2,7 @@ package com.oes.services;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +37,9 @@ public class QuestionServiceImpl implements QuestionService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
 	
-	
+	public List<Question> findAllByCourseId(int courseId) {
+		return (List<Question>) questionsRepository.findAllByCourseId(courseId);
+	}
+
 }

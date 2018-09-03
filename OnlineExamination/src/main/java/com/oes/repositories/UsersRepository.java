@@ -7,8 +7,5 @@ import com.oes.entities.Users;
 
 @Repository("usersRepository")
 public interface UsersRepository extends CrudRepository<Users, Integer>{
-	
 	Users findByUserName(String username);
-	
-	
 }

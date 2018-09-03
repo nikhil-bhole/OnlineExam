@@ -63,7 +63,7 @@ public class WebController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("console");
 		String username = principal.getName();
-		Users u = usersService.findByUsername(username);
+		Users u = usersService.findByUserName(username);
 		modelAndView.addObject("username", username);
 	    modelAndView.addObject("userId", u.getId());
 		return modelAndView;
@@ -75,7 +75,7 @@ public class WebController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("dashboard");
 		String username = principal.getName();
-		Users u = usersService.findByUsername(username);
+		Users u = usersService.findByUserName(username);
 		modelAndView.addObject("username", username);
 	    modelAndView.addObject("userId", u.getId());
 		return modelAndView;
@@ -83,9 +83,8 @@ public class WebController {
 	
 	@PostMapping(path="/response")
 	public String addNewKind(@RequestBody String response, Principal principal) throws Exception {
-		
 		String username = principal.getName();
-		Users u = usersService.findByUsername(username);
+		Users u = usersService.findByUserName(username);
 		Integer user_id = u.getId();
 	    UserResponse ur = new UserResponse();
 	    ur.setUser_response(response);

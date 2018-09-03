@@ -17,7 +17,5 @@ $scope.toggleSidenav = buildToggler('closeEventsDisabled');
     }
 	
 	  
-	  $scope.startTest = function() {
-		  window.location = "home";
-	  };
+	 
 });

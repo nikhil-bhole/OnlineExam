@@ -19,7 +19,7 @@ app.controller("DemoCtrl", function($scope,$http,$interval,$location) {
 	
 		$scope.getData = function(){
 		$http({
-			url: 'getQuestions',
+			url: 'getQuestionsByCourseId',
 			method: 'GET'
 		}).then(function(resp){
 			
@@ -53,10 +53,7 @@ app.controller("DemoCtrl", function($scope,$http,$interval,$location) {
                 }
         }
 		var data = JSON.stringify($scope.Answers);
-		
-		console.log(data);
-		// do posting
-				$http.post(url, data, config).then(function (response) {
+		$http.post(url, data, config).then(function (response) {
 					$scope.postDivAvailable = true;
 					$scope.postCust =  response.data;
 					window.location = "user"
@@ -68,7 +65,6 @@ app.controller("DemoCtrl", function($scope,$http,$interval,$location) {
 		
 	};
   
-		
 	$scope.timer = function(){
 	    var startTime = new Date();
 	    intervalId = $interval(function(){
