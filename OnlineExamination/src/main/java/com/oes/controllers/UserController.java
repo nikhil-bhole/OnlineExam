@@ -1,10 +1,12 @@
 package com.oes.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,6 +23,7 @@ public class UserController {
 	
 	private UsersService usersService;
 	private QuestionService questionsService;
+	private List<Question> questions = new ArrayList();
 	
 	@Autowired
 	public void setUsersService(UsersService userService) {
@@ -44,32 +47,31 @@ public class UserController {
     	modelAndView.setViewName("sign-up");
     	return modelAndView;
     }
-    
-    @RequestMapping(value = "/home", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-    public ModelAndView homey(Model model) {
+
+
+    @RequestMapping(value = "/setTest", method = RequestMethod.POST)
+    public ModelAndView handlePostRequest(Model model,@RequestParam(name="selectSubject") int selectSubject) {
     	ModelAndView modelAndView = new ModelAndView();
-    	modelAndView.addObject("questions",questionsService.listAllQuestion());
+    	questions = questionsService.findAllByCourseId(selectSubject);
+    	modelAndView.addObject("user", "user");
     	modelAndView.setViewName("Home");
-    	System.out.println("Returning questions:");
-        return modelAndView;
+    	return modelAndView;
     }
-   
-    @RequestMapping(value = "/getQuestions", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-    public List<Question> getQuestions(Model model) {
-	   return questionsService.listAllQuestion();
-	}
     
-    @RequestMapping(value = "/getQuestionsByCourseId", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
-    public List<Question> getQuestionsById(Model model) {
-	   return questionsService.findAllByCourseId(2);
-	}
     
-   /**
+    @RequestMapping(value = "/getQuiz", method = RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
+    public List<Question> handleGetRequest(Model model) {
+        return questions;
+    }
+    
+    
+     /**
      * Save user to database.
      *
      * @param user
      * @return
      */
+    
     @RequestMapping(value = "saveuser", method = RequestMethod.POST)
     public String saveProduct(Users user) {
         usersService.save(user);

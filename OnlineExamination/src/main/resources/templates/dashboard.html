@@ -8,13 +8,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 <body>
-<script src="Javascript/dashboard.js"></script>
+<script src="Javascript/questions.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
 
-<div ng-app="myApp" ng-controller="AppCtrl" ng-cloak layout="column">
+<div ng-app="myApp" ng-controller="CtrlTwo" ng-cloak layout="column">
  <md-toolbar class="md-hue-2">
 			<div class="md-toolbar-tools">
 				<md-button ng-click="toggleSidenav()" class="md-icon-button" aria-label="Settings" ng-disabled="false"> 
@@ -39,15 +39,11 @@
 		<div layout="column" layout-align="start-stretch">
 				<div>Welcome <h1 th:text="${username}"></h></div>
 			<div>userID <h1 th:text="${userId}"></h></div>
-			<div>
-			<form class="form-horizontal" ng-submit="startTest()"> 
-			<md-button class="md-raised md-warn" type="submit">logout</md-button>
-			 </form>
-			</div>
 		</div>
 		
+		
 		<div layout="column" layout-align="start-stretch">
-	  		<form ng-submit="startTest()">
+	  		<form th:action="@{/setTest}" method="post">
 	   		 <p>
 	      		Please select subject to appear for test and click on "START TEST"
 	    	 </p>
@@ -55,9 +51,9 @@
 	      				<md-input-container flex="50">
 	        				<label>Select Subject</label>
 	        					<md-select name="selectSubject" ng-model="courseId" required>
-	          							<md-option value="1">Java</md-option>
-	         							<md-option value="2">C#</md-option>
-	          							<md-option value="3">Python</md-option>
+	          							<md-option value="1" ng-value="1">Java</md-option>
+	         							<md-option value="2" ng-value="2">C#</md-option>
+	          							<md-option value="3" ng-value="3">Python</md-option>
 	        					</md-select>
 	       				 <div class="errors" ng-messages="myForm.favoriteColor.$error">
 	          				<div ng-message="required">Required</div>
