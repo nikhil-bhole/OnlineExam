@@ -1,73 +1,90 @@
 <html>
 <head>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<title>Sign In : Online examination portal</title>
+<title>Dashboard : Online examination portal</title>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="css/dashboard.css">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
-<body>
+<body ng-app="myApp" ng-controller="CtrlTwo">
 <script src="Javascript/questions.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
 
-<div ng-app="myApp" ng-controller="CtrlTwo" ng-cloak layout="column">
- <md-toolbar class="md-hue-2">
-			<div class="md-toolbar-tools">
-				<md-button ng-click="toggleSidenav()" class="md-icon-button" aria-label="Settings" ng-disabled="false"> 
-					<i class="material-icons">menu</i> </md-button>
-						<h2 flex md-truncate>Dashboard</h2>
-							<md-button class="md-icon-button" aria-label="Logout">
-            					<i class="material-icons">&#xE8AC;</i>
-            						<md-tooltip md-direction="down">Logout</md-tooltip>
-         					</md-button>
-			</div>
-		</md-toolbar>
+<div  ng-cloak layout="column">
+    <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+            <md-button ng-click="toggleSidenav()" class="md-icon-button" aria-label="Settings" ng-disabled="false"> 
+                <i class="material-icons">menu</i> </md-button>
+                    <h2 flex md-truncate>Online Examination Portal : Dashboard</h2>
+             <md-button ng-click="logout()" class="md-icon-button" aria-label="Logout">
+                <i class="material-icons">&#xE8AC;</i>
+                    <md-tooltip md-direction="down">Logout</md-tooltip>
+             </md-button>
+             
+        </div>
+    </md-toolbar>
 
-		<section layout="row" flex>
+    <section layout="row" flex>
 			<md-sidenav class="md-sidenav-left" md-component-id="closeEventsDisabled" md-whiteframe="4" md-disable-close-events> 
 				<md-toolbar class="md-hue-2">
 					<h1 class="md-toolbar-tools">Menu</h1>
 				</md-toolbar>
 			</md-sidenav>
-		</section>
-		
-		
-		<div layout="column" layout-align="start-stretch">
-				<div>Welcome <h1 th:text="${username}"></h></div>
-			<div>userID <h1 th:text="${userId}"></h></div>
-		</div>
-		
-		
-		<div layout="column" layout-align="start-stretch">
-	  		<form th:action="@{/setTest}" method="post">
-	   		 <p>
-	      		Please select subject to appear for test and click on "START TEST"
-	    	 </p>
-	   			 <div layout="row" layout-align="start" flex>
-	      				<md-input-container flex="50">
-	        				<label>Select Subject</label>
-	        					<md-select name="selectSubject" ng-model="courseId" required>
-	          							<md-option value="1" ng-value="1">Java</md-option>
-	         							<md-option value="2" ng-value="2">C#</md-option>
-	          							<md-option value="3" ng-value="3">Python</md-option>
-	        					</md-select>
-	       				 <div class="errors" ng-messages="myForm.favoriteColor.$error">
-	          				<div ng-message="required">Required</div>
-	       				 </div>
-	      				</md-input-container>
-	    		</div>
-	
-	    		<div layout="row" layout-align="end" flex>
-	      			<md-button ng-click="clearValue()" ng-disabled="!(quest || favoriteColor)">Clear</md-button>
-	      			<md-button type="submit" class="md-primary">Start Test</md-button>
-	    		</div>
-	  		</form>
-		</div>
-</div>
-
+	</section>
+</div>		
+    
+    <div class="md-padding" ng-cloak layout="column">
+            <md-card>
+                  <md-card-title>
+                    <md-card-title-text>
+                      <span class="md-headline">Welcome:</span>
+                      <span class="md-subhead" th:text="${username}" ></span>
+                    </md-card-title-text>
+                  </md-card-title>
+              
+                  <md-card-content>
+                   
+                  </md-card-content>
+            </md-card>
+    </div>
+    
+    
+    <div class="md-padding" ng-cloak layout="column">
+        <md-card>
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">Appear For Test</span>
+                  <span class="md-subhead">Please select the course and click on Start Exam</span>
+                </md-card-title-text>
+              </md-card-title>
+          
+              <form th:action="@{/setTest}" method="post">
+              <md-card-content>
+                <div layout="row">
+                	 <md-input-container>
+                        <label>Select Subject</label>
+                            <md-select name="selectSubject" ng-model="courseId" required>
+                                <md-option value="1" ng-value="1">Java</md-option>
+                                <md-option value="2" ng-value="2">C#</md-option>
+                                <md-option value="3" ng-value="3">Python</md-option>
+                            </md-select>
+                        <div class="errors" ng-messages="myForm.favoriteColor.$error">
+                             <div ng-message="required">Required</div>
+                        </div>
+                    </md-input-container>
+                
+               </div>
+             </md-card-content>
+             <md-input-container>
+                    <md-button class="md-raised md-warn" ng-click="clearValue()" ng-disabled="!(quest || favoriteColor)">Clear</md-button>
+                    <md-button type="submit" class="md-raised md-primary">Start Exam</md-button>
+             </md-input-container>
+             </form>
+        </md-card>
+   </div>
 </body>
 </html>
